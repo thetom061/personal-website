@@ -1,0 +1,29 @@
+name: Deploy to GCP bucket static file assets
+
+on:
+  push:
+    branches:
+    - main 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Set up GCP CLI
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        version: 'latest'
+        project_id: 'site-web-static'
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Deploy to GCP
+      run: |
+        gsutil -m rsync -r . gs://arvingai.com
+
+
+    
