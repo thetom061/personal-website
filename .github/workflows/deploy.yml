@@ -23,7 +23,7 @@ jobs:
       uses: 'google-github-actions/upload-cloud-storage@v1'
       with:
         path: 'index.html'
-        destination: 'gs://arvingai.com'
+        destination: 'arvingai.com'
 
 
 
